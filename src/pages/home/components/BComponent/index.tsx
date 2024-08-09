@@ -9,7 +9,7 @@ import {
   setError,
   setSearchData,
 } from "../../../../redux/slices/searchDataSlice";
-import { Button, Input } from "antd";
+import { Button, Form, Input } from "antd";
 
 const BComponent: React.FC = () => {
   //STATES
@@ -54,19 +54,30 @@ const BComponent: React.FC = () => {
   return (
     <div className={styles.b_component}>
       {!searchData && <h1>Fetch Country Data</h1>}
-      <form action="" onSubmit={handleFetchData} className={styles.form}>
-        <Input
-          type="text"
-          value={countryCode}
-          onChange={(e) => setCountryCode(e.target.value)}
-          placeholder="Enter country code (e.g., US)"
-        />
-        <Button htmlType="submit">Fetch Data</Button>
-      </form>
+      <Form onFinish={handleFetchData} className={styles.search_country_form}>
+        <Form.Item
+        className={styles.form_item}
+          name="countryCode"
+          rules={[{ required: true, message: "Please enter a country!" }]}
+        >
+          <Input
+            type="text"
+            value={countryCode}
+            onChange={(e) => setCountryCode(e.target.value)}
+            placeholder="Enter country"
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
 
       {searchData ? (
         <div>
-          <div className={styles.local_hero}>
+          <div className={styles.search_hero}>
             <div className={styles.flag_div}>
               <img src={searchData.flags.png} alt={searchData.flags.alt} />
             </div>

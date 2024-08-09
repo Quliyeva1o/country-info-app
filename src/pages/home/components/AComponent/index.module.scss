@@ -62,3 +62,26 @@ h4 {
 p {
     color: #777;
 }
+
+
+
+//======================Responsive=======================
+
+.local_hero{
+    @media(max-width:700px){
+        align-items: start;
+        flex-direction: column;
+
+        >div{
+            padding: 0;
+        }
+    }
+}
+
+
+.gerb_section > div {
+    @media(max-width:700px){
+        flex: auto;
+    }
+   
+}

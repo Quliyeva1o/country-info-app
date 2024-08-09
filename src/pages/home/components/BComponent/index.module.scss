@@ -7,11 +7,15 @@
     max-width: 800px;
     margin: 20px auto;
 
-    .form{
+    .search_country_form{
+        margin-top: 10px;
         gap: 10px;
         display: flex;
         height: 40px;
         align-items: center;
+        .form_item{
+            width: 100%;
+        }
      
     }
 }
@@ -28,7 +32,7 @@
     border-radius: 4px;
     font-size: 16px;
     height: 40px;
-    width: calc(100% - 22px);
+    width: 100%!important;
 }
 
 .b_component button {
@@ -47,7 +51,7 @@
     background-color: #0056b3;
 }
 
-.local_hero {
+.search_hero {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -56,7 +60,7 @@
 }
 
 .flag_div {
-    margin-top: 20px;
+    margin-top: 10px;
     flex: 1;
     display: flex;
     justify-content: start;
@@ -67,12 +71,12 @@
     height: auto;
 }
 
-.local_hero > div {
+.search_hero > div {
     flex: 2;
     padding-left: 20px;
 }
 
-.local_hero h4 {
+.search_hero h4 {
     margin: 10px 0;
     color: #555;
 }
@@ -95,4 +99,25 @@
 p {
     color: #777;
     margin-top: 20px;
+}
+
+//======================Responsive=======================
+
+.search_hero{
+    @media(max-width:700px){
+        align-items: start;
+        flex-direction: column;
+
+        >div{
+            padding: 0;
+        }
+    }
+}
+
+
+.gerb_section > div {
+    @media(max-width:700px){
+        flex: auto;
+    }
+   
 }
