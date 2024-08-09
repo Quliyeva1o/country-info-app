@@ -1,8 +1,8 @@
 import React from "react";
-import AComponent from "./components/AComponent";
-import BComponent from "./components/BComponent";
+import AComponent from "./components/localCountry";
+import BComponent from "./components/searchCountry";
 import styles from "./index.module.scss";
-import CountriesTable from "./components/CountriesTable";
+import CountriesTable from "./components/countries";
 const Home: React.FC = () => {
   return (
     <>

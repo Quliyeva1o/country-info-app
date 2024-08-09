@@ -10,7 +10,7 @@ import {
   setSearchData,
 } from "../../../../redux/slices/searchDataSlice";
 import { Button, Form, Input, Spin } from "antd";
-import CountryInfo from "../CountryInfo";
+import CountryInfo from "../countryDetail";
 
 const BComponent: React.FC = () => {
   // STATES

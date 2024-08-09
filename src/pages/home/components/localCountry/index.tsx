@@ -10,7 +10,7 @@ import {
   setError,
   setLocalCountry,
 } from "../../../../redux/slices/localDataSlice";
-import CountryInfo from "../CountryInfo";
+import CountryInfo from "../countryDetail";
 import { Spin } from "antd";
 
 const AComponent: React.FC = () => {
@@ -55,11 +55,7 @@ const AComponent: React.FC = () => {
   }, [localCountry]);
 
   if (loading)
-    return (
-      <div>
-        <Spin />
-      </div>
-    );
+    return <Spin />;
   if (error) return <div>{error}</div>;
 
   return (
