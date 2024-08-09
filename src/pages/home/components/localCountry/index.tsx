@@ -13,7 +13,7 @@ import {
 import CountryInfo from "../countryDetail";
 import { Spin } from "antd";
 
-const AComponent: React.FC = () => {
+const LocalCountry: React.FC = () => {
   const dispatch = useDispatch();
   const { localCountry, localData, loading, error } = useSelector(
     (state: RootState) => state.localData
@@ -71,4 +71,4 @@ const AComponent: React.FC = () => {
   );
 };
 
-export default AComponent;
+export default LocalCountry;

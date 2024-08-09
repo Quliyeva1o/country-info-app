@@ -12,7 +12,7 @@ import {
 import { Button, Form, Input, Spin } from "antd";
 import CountryInfo from "../countryDetail";
 
-const BComponent: React.FC = () => {
+const SearchedCountry: React.FC = () => {
   // STATES
   const [countryCode, setCountryCode] = useState("");
 
@@ -86,7 +86,7 @@ const BComponent: React.FC = () => {
   );
 };
 
-export default BComponent;
+export default SearchedCountry;
 
 // INTERFACE
 interface CountryData {
