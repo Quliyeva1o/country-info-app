@@ -1,7 +1,6 @@
-// src/slices/localDataSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// Define a type for the slice state
+//INTERFACE
 interface LocalDataState {
   localCountry: { latitude: number; longitude: number } | null;
   localData: any;
@@ -9,7 +8,6 @@ interface LocalDataState {
   error: string | null;
 }
 
-// Define the initial state
 const initialState: LocalDataState = {
   localCountry: null,
   localData: null,
@@ -36,8 +34,5 @@ const localDataSlice = createSlice({
   },
 });
 
-// Export actions
 export const { setLocalData, setLoading, setError, setLocalCountry } = localDataSlice.actions;
-
-// Export reducer
 export default localDataSlice.reducer;

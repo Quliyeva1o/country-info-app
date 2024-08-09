@@ -59,48 +59,6 @@
     border-bottom: 1px solid #ddd;
 }
 
-.flag_div {
-    margin-top: 10px;
-    flex: 1;
-    display: flex;
-    justify-content: start;
-}
-
-.flag_div img {
-    max-width: 150px;
-    height: auto;
-}
-
-.search_hero > div {
-    flex: 2;
-    padding-left: 20px;
-}
-
-.search_hero h4 {
-    margin: 10px 0;
-    color: #555;
-}
-
-.gerb_section {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 20px;
-}
-
-.gerb_section > div {
-    flex: 1;
-}
-
-.gerb img {
-    width: 90px;
-    height: auto;
-}
-
-p {
-    color: #777;
-    margin-top: 20px;
-}
-
 //======================Responsive=======================
 
 .search_hero{
@@ -114,10 +72,3 @@ p {
     }
 }
 
-
-.gerb_section > div {
-    @media(max-width:700px){
-        flex: auto;
-    }
-   
-}

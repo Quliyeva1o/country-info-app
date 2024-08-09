@@ -94,9 +94,10 @@ const CountriesTable: React.FC = () => {
       {selectedCountry && (
         <Modal
           title={selectedCountry.name}
-          visible={!!selectedCountry}
+          open={!!selectedCountry}
           onCancel={handleModalClose}
           footer={null}
+          centered
         >
           <Card
             cover={<img alt="flag" src={selectedCountry.flag} />}

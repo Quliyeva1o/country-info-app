@@ -9,33 +9,34 @@ import {
   setError,
   setSearchData,
 } from "../../../../redux/slices/searchDataSlice";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Spin } from "antd";
+import CountryInfo from "../CountryInfo";
 
 const BComponent: React.FC = () => {
-  //STATES
+  // STATES
   const [countryCode, setCountryCode] = useState("");
 
-  //REDUX
+  // REDUX
   const { searchData, loading, error } = useSelector(
     (state: RootState) => state.searchData
   );
 
-  //DISPATCH
+  // DISPATCH
   const dispatch = useDispatch();
 
-  //FETCHDATA
+  // FETCH DATA
   const handleFetchData = () => {
     dispatch(setLoading(true));
     getUrl(BASE_URL)
       .then((res: any) => {
         const foundItem: CountryData | undefined = res.data.find(
           (item: CountryData) =>
-            item.cca2.trim().toLocaleLowerCase() ===
-              countryCode.trim().toLocaleLowerCase() ||
+            item.cca2.trim().toLowerCase() ===
+              countryCode.trim().toLowerCase() ||
             item.name.common
               .trim()
-              .toLocaleLowerCase()
-              .includes(countryCode.trim().toLocaleLowerCase())
+              .toLowerCase()
+              .includes(countryCode.trim().toLowerCase())
         );
         dispatch(setSearchData(foundItem || null));
       })
@@ -48,7 +49,7 @@ const BComponent: React.FC = () => {
       });
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div><Spin/></div>;
   if (error) return <div>{error}</div>;
 
   return (
@@ -56,7 +57,7 @@ const BComponent: React.FC = () => {
       {!searchData && <h1>Fetch Country Data</h1>}
       <Form onFinish={handleFetchData} className={styles.search_country_form}>
         <Form.Item
-        className={styles.form_item}
+          className={styles.form_item}
           name="countryCode"
           rules={[{ required: true, message: "Please enter a country!" }]}
         >
@@ -76,28 +77,7 @@ const BComponent: React.FC = () => {
       </Form>
 
       {searchData ? (
-        <div>
-          <div className={styles.search_hero}>
-            <div className={styles.flag_div}>
-              <img src={searchData.flags.png} alt={searchData.flags.alt} />
-            </div>
-            <div>
-              <h4>Country Name: {searchData.name.common}</h4>
-              <h4>Country Code: {searchData.cca2}</h4>
-              <h4>Population: {searchData.population}</h4>
-            </div>
-          </div>
-          <div className={styles.gerb_section}>
-            <div>
-              <h4>Timezone: {searchData.timezones[0]}</h4>
-              <h4>Latitude: {searchData.latlng[0]}</h4>
-              <h4>Longitude: {searchData.latlng[1]}</h4>
-            </div>
-            <div className={styles.gerb}>
-              <img src={searchData.coatOfArms.png} alt="Coat of Arms" />
-            </div>
-          </div>
-        </div>
+        <CountryInfo data={searchData} className={`search`} />
       ) : (
         <p>No data found for the entered country code.</p>
       )}
@@ -107,7 +87,7 @@ const BComponent: React.FC = () => {
 
 export default BComponent;
 
-//INTERFACE
+// INTERFACE
 interface CountryData {
   cca2: string;
   name: { common: string };

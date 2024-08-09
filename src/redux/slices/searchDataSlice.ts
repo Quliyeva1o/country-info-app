@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// Define a type for the slice state
+//INTERFACE
 interface SearchDataState {
   searchCountry: { latitude: number; longitude: number } | null;
   searchData: any;
@@ -8,14 +8,15 @@ interface SearchDataState {
   error: string | null;
 }
 
-// Define the initial state
+//INITIALS
 const initialState: SearchDataState = {
   searchCountry: null,
   searchData: null,
-  loading: false, // Changed to false
+  loading: false,
   error: null,
 };
 
+//SLICE
 const searchDataSlice = createSlice({
   name: "searchData",
   initialState,
@@ -38,9 +39,7 @@ const searchDataSlice = createSlice({
   },
 });
 
-// Export actions
 export const { setSearchData, setLoading, setError, setSearchCountry } =
   searchDataSlice.actions;
 
-// Export reducer
 export default searchDataSlice.reducer;

@@ -10,6 +10,8 @@ import {
   setError,
   setLocalCountry,
 } from "../../../../redux/slices/localDataSlice";
+import CountryInfo from "../CountryInfo";
+import { Spin } from "antd";
 
 const AComponent: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,7 +19,8 @@ const AComponent: React.FC = () => {
     (state: RootState) => state.localData
   );
 
-  // Fetch local country data
+
+//EFFECTS
   useEffect(() => {
     dispatch(setLoading(true));
     getUrl(LOCAL_COUNTRY_URL)
@@ -31,10 +34,7 @@ const AComponent: React.FC = () => {
       .finally(() => {
         dispatch(setLoading(false));
       });
-  }, [dispatch]);
 
-  // Fetch data based on local country
-  useEffect(() => {
     if (localCountry) {
       dispatch(setLoading(true));
       getUrl(BASE_URL)
@@ -52,37 +52,21 @@ const AComponent: React.FC = () => {
           dispatch(setLoading(false));
         });
     }
-  }, [localCountry, dispatch]);
+  }, [localCountry]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div>
+        <Spin />
+      </div>
+    );
   if (error) return <div>{error}</div>;
 
   return (
     <div className={styles.a_component}>
       <h1>Data Based on Your Location</h1>
       {localData ? (
-        <div>
-          <div className={styles.local_hero}>
-            <div className={styles.flag_div}>
-              <img src={localData.flags.png} alt={localData.flags.alt} />
-            </div>
-            <div>
-              <h4>Country Name: {localData.name.common}</h4>
-              <h4>Country Code: {localData.cca2}</h4>
-              <h4>Population: {localData.population}</h4>
-            </div>
-          </div>
-          <div className={styles.gerb_section}>
-            <div>
-              <h4>Timezone: {localData.timezones[0]}</h4>
-              <h4>Latitude: {localData.latlng[0]}</h4>
-              <h4>Longitude: {localData.latlng[1]}</h4>
-            </div>
-            <div className={styles.gerb}>
-              <img src={localData.coatOfArms.png} alt="Coat of Arms" />
-            </div>
-          </div>
-        </div>
+        <CountryInfo data={localData} className={`local`} />
       ) : (
         <p>No data found for your location.</p>
       )}
