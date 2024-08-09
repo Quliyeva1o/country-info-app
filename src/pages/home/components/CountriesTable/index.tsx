@@ -37,6 +37,8 @@ const CountriesTable: React.FC = () => {
     dispatch(setLoading(true));
     getUrl(`${BASE_URL}?page=${page}&pageSize=${pageSize}`)
       .then((res: any) => {
+        console.log(res.data);
+        
         const data = res.data.map((country: any) => ({
           key: country.cca2,
           name: country.name.common,
@@ -45,7 +47,7 @@ const CountriesTable: React.FC = () => {
           capital: country.capital ? country.capital[0] : "N/A",
           flag: country.flags.png,
           countryCode: country.cca2,
-          countryPrefix: country.callingCodes ? `+${country.callingCodes[0]}` : "N/A"
+          countryPrefix: country.ccn3 ? `+${country.ccn3}` : "N/A"
         }));
         dispatch(setAllCountry(data));
         setTotalRecords(res.total);
