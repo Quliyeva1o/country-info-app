@@ -9,7 +9,6 @@ const App = () => (
     <Router>
       <AppRoutes />
     </Router>
-  
   </Provider>
 );
 

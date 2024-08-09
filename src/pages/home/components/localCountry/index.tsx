@@ -19,8 +19,7 @@ const AComponent: React.FC = () => {
     (state: RootState) => state.localData
   );
 
-
-//EFFECTS
+  //EFFECTS
   useEffect(() => {
     dispatch(setLoading(true));
     getUrl(LOCAL_COUNTRY_URL)
@@ -54,17 +53,19 @@ const AComponent: React.FC = () => {
     }
   }, [localCountry]);
 
-  if (loading)
-    return <Spin />;
-  if (error) return <div>{error}</div>;
-
   return (
-    <div className={styles.a_component}>
-      <h1>Data Based on Your Location</h1>
-      {localData ? (
-        <CountryInfo data={localData} className={`local`} />
-      ) : (
-        <p>No data found for your location.</p>
+    <div className={styles.local_country_component}>
+      {error && <div>{error}</div>}
+      {loading && <Spin />}
+      {!error && !loading && (
+        <>
+          <h1>Data Based on Your Location</h1>
+          {localData ? (
+            <CountryInfo data={localData} className={`local`} />
+          ) : (
+            <p>No data found for your location.</p>
+          )}
+        </>
       )}
     </div>
   );

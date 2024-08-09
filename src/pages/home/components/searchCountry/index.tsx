@@ -42,18 +42,19 @@ const BComponent: React.FC = () => {
       })
       .catch((err) => {
         console.error("Error fetching data", err);
-        dispatch(setError("Error fetching data"));
+        dispatch(setError("Sorry We can't get data"));
       })
       .finally(() => {
         dispatch(setLoading(false));
       });
   };
 
-  if (loading) return <div><Spin/></div>;
-  if (error) return <div>{error}</div>;
+ 
 
   return (
-    <div className={styles.b_component}>
+    <div className={styles.search_country_component}>
+      {error && <div>{error}</div>}
+
       {!searchData && <h1>Fetch Country Data</h1>}
       <Form onFinish={handleFetchData} className={styles.search_country_form}>
         <Form.Item
@@ -71,7 +72,7 @@ const BComponent: React.FC = () => {
 
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Submit
+            {loading ? <Spin /> : "Submit"}
           </Button>
         </Form.Item>
       </Form>

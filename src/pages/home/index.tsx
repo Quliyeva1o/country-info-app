@@ -3,14 +3,15 @@ import AComponent from "./components/localCountry";
 import BComponent from "./components/searchCountry";
 import styles from "./index.module.scss";
 import CountriesTable from "./components/countries";
+import { Flex } from "antd";
 const Home: React.FC = () => {
   return (
     <>
       <div>
-        <div className={styles.home_hero}>
+        <Flex gap={10} className={styles.home_hero}>
           <AComponent />
           <BComponent />
-        </div>
+        </Flex>
         <CountriesTable />
       </div>
     </>

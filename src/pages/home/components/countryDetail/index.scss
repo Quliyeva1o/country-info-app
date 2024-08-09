@@ -73,3 +73,11 @@
         color: #555;
     }
 }
+
+.mapBtn {
+    background-color:#509E2F;
+    width: 160px;
+    &:hover{
+        background-color: #38741f!important;
+    }
+}

@@ -37,8 +37,6 @@ const CountriesTable: React.FC = () => {
     dispatch(setLoading(true));
     getUrl(`${BASE_URL}?page=${page}&pageSize=${pageSize}`)
       .then((res: any) => {
-        console.log(res.data);
-        
         const data = res.data.map((country: any) => ({
           key: country.cca2,
           name: country.name.common,
@@ -47,7 +45,7 @@ const CountriesTable: React.FC = () => {
           capital: country.capital ? country.capital[0] : "N/A",
           flag: country.flags.png,
           countryCode: country.cca2,
-          countryPrefix: country.ccn3 ? `+${country.ccn3}` : "N/A"
+          countryPrefix: country.ccn3 ? `+${country.ccn3}` : "N/A",
         }));
         dispatch(setAllCountry(data));
         setTotalRecords(res.total);
@@ -99,13 +97,8 @@ const CountriesTable: React.FC = () => {
           footer={null}
           centered
         >
-          <Card
-            cover={<img alt="flag" src={selectedCountry.flag} />}
-          >
-            <Card.Meta
-              title={selectedCountry.name}
-              description={`Code: ${selectedCountry.countryCode}, Prefix: ${selectedCountry.countryPrefix}`}
-            />
+          <Card cover={<img alt="flag" src={selectedCountry.flag} />}>
+            <p>{`Code: ${selectedCountry.countryCode}, Prefix: ${selectedCountry.countryPrefix}`}</p>
             <p>Population: {selectedCountry.population}</p>
             <p>Region: {selectedCountry.region}</p>
             <p>Capital: {selectedCountry.capital}</p>
@@ -117,7 +110,6 @@ const CountriesTable: React.FC = () => {
 };
 
 export default CountriesTable;
-
 
 // INTERFACES
 interface Country {
@@ -135,7 +127,9 @@ const columns: TableColumnsType<Country> = [
     title: "Flag",
     dataIndex: "flag",
     key: "flag",
-    render: (text: string) => <img src={text} alt="flag" style={{ width: 30 }} />,
+    render: (text: string) => (
+      <img src={text} alt="flag" style={{ width: 30 }} />
+    ),
     width: 100,
   },
   {
@@ -177,4 +171,3 @@ const columns: TableColumnsType<Country> = [
     width: 150,
   },
 ];
-

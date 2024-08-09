@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.scss";
+import { Button } from "antd";
 
 //INTERFACES
 interface CountryData {
@@ -9,6 +10,9 @@ interface CountryData {
   };
   name: {
     common: string;
+  };
+  maps: {
+    googleMaps: string;
   };
   cca2: string;
   population: number;
@@ -25,7 +29,6 @@ interface CountryInfoProps {
 }
 
 const CountryInfo: React.FC<CountryInfoProps> = ({ data, className }) => {
-
 
   //DATAS ARRAYS
   const infoItems = [
@@ -65,6 +68,10 @@ const CountryInfo: React.FC<CountryInfoProps> = ({ data, className }) => {
           />
         </div>
       </div>
+
+      <Button target="_blank" type="primary" href={data.maps.googleMaps} className="mapBtn">
+        Map
+      </Button>
     </div>
   );
 };

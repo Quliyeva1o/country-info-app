@@ -1,4 +1,4 @@
-.b_component {
+.search_country_component {
     border: 2px solid #000;
     padding: 20px;
     border-radius: 8px;
@@ -20,13 +20,13 @@
     }
 }
 
-.b_component h1 {
+.search_country_component h1 {
     color: #333;
     font-size: 24px;
     margin-bottom: 20px;
 }
 
-.b_component input {
+.search_country_component input {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -35,7 +35,7 @@
     width: 100%!important;
 }
 
-.b_component button {
+.search_country_component button {
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -47,7 +47,7 @@
     transition: background-color 0.3s ease;
 }
 
-.b_component button:hover {
+.search_country_component button:hover {
     background-color: #0056b3;
 }
 
